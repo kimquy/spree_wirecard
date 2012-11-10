@@ -1,0 +1,34 @@
+<%
+wirecard_qpay_params = @order.wirecard_qpay_params(@payment_method,
+  :order_id => @order.number,
+  :payment_method_id => @payment_method.id,
+  :successURL => wirecard_success_order_checkout_url(@order, :token => @order.token, :payment_method_id => @payment_method.id),
+  :failureURL => wirecard_failure_order_checkout_url(@order, :token => @order.token),
+  :cancelURL => wirecard_cancel_order_checkout_url(@order, :token => @order.token),
+  :serviceURL => root_url,
+  :confirmURL => wirecard_confirmations_url,
+)
+%>
+
+<%= form_tag(Wirecard.payment_page_url, :authenticity_token => false, id: 'payment_form') do %>
+  <%- wirecard_qpay_params.each do |name, value| %>
+    <%= hidden_field_tag name, value %>
+  <%- end -%>
+  <%= hidden_field_tag 'windowName' %>
+
+  <%= javascript_tag do %>
+    document.getElementById('windowName').value = window.name;
+    document.getElementById('payment_form').submit();
+  <% end %>
+<%- end -%>
+
+<%- if Rails.env.development? -%>
+  <table border="1" cellpadding="0" cellspacing="0">
+    <%- %w[customerId language amount currency orderDescription displayText successURL cancelURL failureURL serviceURL confirmURL imageURL requestFingerprintOrder requestFingerprintSeed requestFingerprint].each do |param| -%>
+      <tr>
+        <th scope="row"><%= param %></th>
+        <td><%= wirecard_qpay_params[param.to_sym] %></td>
+      </tr>
+    <%- end -%>
+  </table>
+<%- end -%>

@@ -1,0 +1,29 @@
+<fieldset>
+  <legend>Wirecard</legend>
+
+  <table class="index">
+    <thead>
+      <tr>
+        <th colspan="2">Wircard Transaction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Currency:</th>
+        <td><%= payment.source.currency %></td>
+      </tr>
+      <tr>
+        <th scope="row">Order number:</th>
+        <td><%= payment.source.order_number %></td>
+      </tr>
+      <tr>
+        <th scope="row">Payment type:</th>
+        <td><%= payment.source.payment_type %></td>
+      </tr>
+      <tr>
+        <th scope="row">Params:</th>
+        <td><pre><%= payment.source.params.to_yaml %></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>
