@@ -1,5 +1,5 @@
 module Spree
-  class BillingIntegration::Wirecard::QPAY < BillingIntegration
+  class BillingIntegration::Wirecard::QPAY < PaymentMethod
     preference :customer_id, :string
     preference :secret, :string
     preference :language, :string, :default => 'EN'
