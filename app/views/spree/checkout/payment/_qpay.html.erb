@@ -9,7 +9,6 @@
 </style>
 
 <fieldset id="wirecard_qpay_payment_<%= payment_method.id %>" data-hook>
-  <legend><%= t(:payment_information) %></legend>
   <iframe id="wirecard_qpay_frame_<%= payment_method.id %>" class="wirecard_qpay_frame" src="<%= wirecard_qpay_payment_page_order_checkout_url(@order, :payment_method_id => payment_method.id) %>"></iframe>
 </fieldset>
 
