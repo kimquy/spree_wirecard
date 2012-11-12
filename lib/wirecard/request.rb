@@ -10,6 +10,7 @@ module Wirecard
         :customerId  => payment_method.preferences[:customer_id],
         :secret      => payment_method.preferences[:secret],
         :currency    => payment_method.preferences[:currency],
+        # FIXME use I18n.locale by default if it's available for QPAY
         :language    => payment_method.preferences[:language],
         :paymentType => payment_method.preferences[:payment_type],
       )
