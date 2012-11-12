@@ -1,3 +1,4 @@
+require 'wirecard'
 require 'spree/billing_integration/wirecard/qpay'
 require 'spree/wirecard_qpay_helpers'
 
