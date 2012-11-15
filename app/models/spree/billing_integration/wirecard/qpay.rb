@@ -7,8 +7,7 @@ module Spree
     preference :payment_type, :string, :default => 'SELECT'
 
     attr_accessible :preferred_customer_id, :preferred_secret,
-                    :preferred_language, :preferred_currency, :preferred_payment_type,
-                    :preferred_server, :preferred_test_mode
+                    :preferred_language, :preferred_currency, :preferred_payment_type
 
   end
 end
