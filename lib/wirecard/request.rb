@@ -9,6 +9,7 @@ module Wirecard
       self.params = params.symbolize_keys.reverse_merge(
         :customerId  => payment_method.preferences[:customer_id],
         :secret      => payment_method.preferences[:secret],
+        :shopId      => payment_method.preferences[:shop_id],
         :currency    => payment_method.preferences[:currency],
         # FIXME use I18n.locale by default if it's available for QPAY
         :language    => payment_method.preferences[:language],
@@ -34,6 +35,7 @@ module Wirecard
       @fingerprint_params ||= begin
         fingerprint_params = %w[amount currency language orderDescription successURL].map(&:to_sym)
         fingerprint_params << :confirmURL if params.include?(:confirmURL)
+        fingerprint_params << :shopId if params.include?(:shopId)
         fingerprint_params
       end
     end
