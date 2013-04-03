@@ -9,8 +9,8 @@ wirecard_qpay_params = @order.wirecard_qpay_params(@payment_method,
   :confirmURL => wirecard_confirmations_url,
 )
 %>
-
-<%= form_tag(Wirecard.payment_page_url, :authenticity_token => false, id: 'payment_form') do %>
+<%# NOTE: We use content_tag instead of form_tag to prevent the UTF-8 token from showing up. %>
+<%= content_tag(:form, :id => 'payment_form', :action => Wirecard.payment_page_url, :method => 'post') do %>
   <%- wirecard_qpay_params.each do |name, value| %>
     <%= hidden_field_tag name, value %>
   <%- end -%>
