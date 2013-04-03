@@ -15,6 +15,7 @@ module Wirecard
         :language    => payment_method.preferences[:language],
         :paymentType => payment_method.preferences[:payment_type],
       )
+      self.params.delete(:shopId) unless self.params[:shopId].present? # if the shopID is blank, it shouldn't be in the params hash
       generate_fingerprint
     end
 
