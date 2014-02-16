@@ -21,6 +21,7 @@ module Spree
       unless payment.completed?
         if payment.source.success?
           finalize_wirecard_qpay_payment(@order, payment)
+          flash[:commerce_tracking] = "nothing special"
         else
           fail_wirecard_qpay_payment(@order, payment)
 
